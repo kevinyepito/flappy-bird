@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Algoritmo Genético</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <main class="app">
+
+    <header>
+      <div class="brand">
+        <div class="logo">🐤</div>
+        <div>
+          <h1><span>FLAPPY BIRD</span></h1>
+          <p class="subtitle">Simulación de algoritmo genético</p>
+        </div>
+      </div>
+
+      <div class="status" id="status">● EVOLUCIONANDO</div>
+    </header>
+
+    <div class="layout">
+
+      <!-- COLUMNA DEL JUEGO -->
+      <section class="panel">
+        <div class="panel-title">
+          <h2>Simulación en tiempo real</h2>
+          <span class="small-label" id="generationLabel">
+            Generación 1
+          </span>
+        </div>
+
+        <div class="game-wrap">
+          <canvas id="game" width="640" height="420"></canvas>
+          <div class="game-tag">IA AUTÓNOMA</div>
+          <div class="game-hint">
+            Los pájaros aprenden mediante selección, cruce y mutación
+          </div>
+        </div>
+
+        <div class="controls">
+          <button class="primary" id="pauseBtn">
+            Ⅱ Pausar
+          </button>
+          <button class="secondary" id="restartBtn">
+            ↻ Reiniciar
+          </button>
+        </div>
+
+        <div class="section">
+          <div class="section-head">
+            <h2>Progreso evolutivo</h2>
+            <span class="small-label">Mejor fitness por generación</span>
+          </div>
+
+          <div class="chart-wrap">
+            <canvas id="chart"></canvas>
+          </div>
+
+          <div class="chart-legend">
+            <span><i class="dot" style="background:#57e389"></i>Mejor</span>
+            <span><i class="dot" style="background:#6ca8ff"></i>Promedio</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- COLUMNA DE ESTADÍSTICAS -->
+      <aside class="panel">
+        <div class="panel-title">
+          <h2>Panel evolutivo</h2>
+          <span class="small-label">En vivo</span>
+        </div>
+
+        <div class="stats">
+          <div class="stat">
+            <div class="stat-label">Generación</div>
+            <div class="stat-value green" id="generation">1</div>
+            <div class="stat-note">Ciclo evolutivo</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-label">Vivos</div>
+            <div class="stat-value blue" id="alive">30</div>
+            <div class="stat-note">De <span id="total">30</span> pájaros</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-label">Mejor fitness</div>
+            <div class="stat-value yellow" id="best">0</div>
+            <div class="stat-note">Mejor aptitud histórica</div>
+          </div>
+
+          <div class="stat">
+            <div class="stat-label">Obstáculos</div>
+            <div class="stat-value" id="pipes">0</div>
+            <div class="stat-note">Superados en esta ronda</div>
+          </div>
+        </div>
+
+        <div class="section">
+          <div class="section-head">
+            <h2>Parámetros</h2>
+            <span class="small-label">Personalizables</span>
+          </div>
+
+          <div class="settings">
+            <div>
+              <div class="setting-head">
+                <label for="populationRange">Tamaño población</label>
+                <span id="populationValue">30</span>
+              </div>
+              <input id="populationRange" type="range"
+                     min="10" max="80" step="10" value="30">
+              <p class="setting-note">
+                Cantidad de pájaros por generación.
+              </p>
+            </div>
+
+            <div>
+              <div class="setting-head">
+                <label for="speedRange">Velocidad simulación</label>
+                <span id="speedValue">1x</span>
+              </div>
+              <input id="speedRange" type="range"
+                     min="1" max="5" step="1" value="1">
+              <p class="setting-note">
+                Aumenta la cantidad de pasos simulados por fotograma.
+              </p>
+            </div>
+
+            <div>
+              <div class="setting-head">
+                <label for="mutationRange">Tasa de mutación</label>
+                <span id="mutationValue">10%</span>
+              </div>
+              <input id="mutationRange" type="range"
+                     min="0" max="50" step="1" value="10">
+              <p class="setting-note">
+                Probabilidad de modificar cada gen de un nuevo individuo.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+          <div class="section-head">
+            <h2>Población actual</h2>
+            <span class="small-label">Cada círculo = 1 pájaro</span>
+          </div>
+          <div class="population" id="population"></div>
+        </div>
+
+        <div class="section">
+          <div class="section-head">
+            <h2>¿Qué está haciendo la IA?</h2>
+          </div>
+
+          <div class="info-box" id="aiInfo">
+            <strong>Evaluando individuos.</strong><br>
+            Cada pájaro usa su pequeño cerebro para decidir cuándo aletear.
+          </div>
+        </div>
+      </aside>
+
+    </div>
+
+    <footer>
+      NEUROFLAP · Proyecto académico de algoritmos genéticos · HTML + CSS + JavaScript
+    </footer>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
